@@ -1,4 +1,5 @@
 dist/
+check-graphite
 
 # Binaries for programs and plugins
 *.exe

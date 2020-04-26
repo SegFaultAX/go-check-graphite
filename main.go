@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 	"os"
-	"strconv"
 	"strings"
 
 	"github.com/segfaultax/go-nagios"
+	"github.com/segfaultax/go-nagios/util"
 	"github.com/spf13/pflag"
 )
 
@@ -135,7 +135,7 @@ func main() {
 
 	check.CheckValue(val)
 	check.AddPerfData(nagios.NewPerfData(aggregation, val, ""))
-	check.SetMessage("%s (%s is %s)", metricName, aggregation, strconv.FormatFloat(val, 'f', -1, 64))
+	check.SetMessage("%s (%s is %s)", metricName, aggregation, util.PrettyFloat(val, 6))
 }
 
 func checkRequiredOptions() error {
