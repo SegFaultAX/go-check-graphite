@@ -40,28 +40,28 @@ func TestAggregationsWithoutErrors(t *testing.T) {
 		sample   string
 		expected float64
 	}{
-		{"avg", "noNulls", 6.6 / 3},
-		{"avg", "someNulls", 4.4 / 2},
-		{"max", "noNulls", 3.3},
-		{"max", "someNulls", 3.3},
-		{"median", "noNulls", 2.2},
-		{"median", "someNulls", 3.3},
-		{"min", "noNulls", 1.1},
-		{"min", "someNulls", 1.1},
-		{"nullcnt", "allNulls", 3.0},
-		{"nullcnt", "noNulls", 0.0},
-		{"nullcnt", "someNulls", 1.0},
-		{"nullpct", "allNulls", 1.0},
-		{"nullpct", "noNulls", 0.0},
-		{"nullpct", "someNulls", 1.0 / 3.0},
-		{"sum", "noNulls", 6.6},
-		{"sum", "someNulls", 4.4},
-		{"95th", "noNulls", 3.3},
-		{"95th", "someNulls", 3.3},
-		{"999th", "noNulls", 3.3},
-		{"999th", "someNulls", 3.3},
-		{"99th", "noNulls", 3.3},
-		{"99th", "someNulls", 3.3},
+		{"avg",      "noNulls",    6.6 / 3},
+		{"avg",      "someNulls",  4.4 / 2},
+		{"max",      "noNulls",    3.3},
+		{"max",      "someNulls",  3.3},
+		{"median",   "noNulls",    2.2},
+		{"median",   "someNulls",  3.3},
+		{"min",      "noNulls",    1.1},
+		{"min",      "someNulls",  1.1},
+		{"nullcnt",  "allNulls",   3.0},
+		{"nullcnt",  "noNulls",    0.0},
+		{"nullcnt",  "someNulls",  1.0},
+		{"nullpct",  "allNulls",   1.0},
+		{"nullpct",  "noNulls",    0.0},
+		{"nullpct",  "someNulls",  1.0 / 3.0},
+		{"sum",      "noNulls",    6.6},
+		{"sum",      "someNulls",  4.4},
+		{"95th",     "noNulls",    3.3},
+		{"95th",     "someNulls",  3.3},
+		{"999th",    "noNulls",    3.3},
+		{"999th",    "someNulls",  3.3},
+		{"99th",     "noNulls",    3.3},
+		{"99th",     "someNulls",  3.3},
 	}
 
 	for _, ex := range examples {
@@ -83,14 +83,14 @@ func TestAggregationsWithErrors(t *testing.T) {
 		agg    string
 		sample string
 	}{
-		{"avg", "allNulls"},
-		{"max", "allNulls"},
-		{"median", "allNulls"},
-		{"min", "allNulls"},
-		{"sum", "allNulls"},
-		{"95th", "allNulls"},
-		{"999th", "allNulls"},
-		{"99th", "allNulls"},
+		{"avg",     "allNulls"},
+		{"max",     "allNulls"},
+		{"median",  "allNulls"},
+		{"min",     "allNulls"},
+		{"sum",     "allNulls"},
+		{"95th",    "allNulls"},
+		{"999th",   "allNulls"},
+		{"99th",    "allNulls"},
 	}
 
 	for _, ex := range examples {
