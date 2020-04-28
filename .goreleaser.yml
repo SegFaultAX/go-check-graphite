@@ -17,8 +17,6 @@ builds:
   goarch:
     - 386
     - amd64
-release:
-  disable: true
 archives:
 - replacements:
     darwin: Darwin
