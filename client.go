@@ -73,7 +73,7 @@ func (c *graphiteClient) getMetrics(query, from, until string) (metrics, error) 
 	}
 
 	var ms metrics
-	err = json.Unmarshal(*resp, &ms)
+	err = json.Unmarshal(resp, &ms)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (c *graphiteClient) getMetrics(query, from, until string) (metrics, error) 
 	return ms, nil
 }
 
-func (c *graphiteClient) doGET(path string, params interface{}) (*[]byte, error) {
+func (c *graphiteClient) doGET(path string, params interface{}) ([]byte, error) {
 	var qs string
 	if params == nil {
 		qs = ""
@@ -119,7 +119,7 @@ func (c *graphiteClient) doGET(path string, params interface{}) (*[]byte, error)
 		return nil, err
 	}
 
-	return &body, nil
+	return body, nil
 }
 
 func (d *datapoint) UnmarshalJSON(in []byte) error {
