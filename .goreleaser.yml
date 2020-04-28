@@ -10,6 +10,15 @@ builds:
 - env:
   - CGO_ENABLED=0
   binary: check-graphite
+  goos:
+    - darwin
+    - linux
+    - windows
+  goarch:
+    - 386
+    - amd64
+release:
+  disable: true
 archives:
 - replacements:
     darwin: Darwin
@@ -21,6 +30,10 @@ checksum:
   name_template: 'checksums.txt'
 snapshot:
   name_template: "{{ .Tag }}-next"
+artifactories:
+  - name: opentable
+    mode: archive
+    target: http://artifactory.otenv.com/artifactory/ot-golang/{{ .ProjectName }}/{{ .Version }}/
 changelog:
   sort: asc
   filters:
