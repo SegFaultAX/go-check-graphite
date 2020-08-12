@@ -11,18 +11,20 @@ import (
 )
 
 var (
-	showHelp    bool
-	graphite    string
-	warning     string
-	critical    string
-	username    string
-	password    string
-	metricName  string
-	target      string
-	from        string
-	until       string
-	aggregation string
-	timeout     int
+	showHelp     bool
+	graphite     string
+	warning      string
+	critical     string
+	username     string
+	password     string
+	metricName   string
+	target       string
+	from         string
+	until        string
+	aggregation  string
+	timeout      int
+	constantLine float64
+	wrapLine     bool
 )
 
 type aggFunc func([]*float64) (float64, error)
@@ -91,6 +93,9 @@ func init() {
 	pflag.StringVarP(&aggregation, "aggregation", "a", "avg", aggHelp)
 
 	pflag.IntVarP(&timeout, "timeout", "t", 10, "Execution timeout")
+
+	pflag.Float64VarP(&constantLine, "line", "l", 0.0, "the value used in constantLine(n) by --wrap")
+	pflag.BoolVarP(&wrapLine, "wrap", "p", false, "wrap the query in a grouped constantLine(n) query")
 }
 
 func main() {
@@ -113,6 +118,10 @@ func main() {
 		printUsageErrorAndExit(3, err)
 	}
 	defer check.Done()
+
+	if wrapLine {
+		target = fmt.Sprintf("group(%s, constantLine(%s))", target, util.PrettyFloat(constantLine, 6))
+	}
 
 	ms, err := cli.getMetrics(target, from, until)
 	if err != nil {
